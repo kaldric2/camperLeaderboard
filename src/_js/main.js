@@ -8,13 +8,22 @@ class LeaderboardTitle extends React.Component {
 }
 
 class LeaderboardHeader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(e) {
+        this.props.onClick(e);
+    }
+
     render() {
         return (
             <tr>
                 <th>Rank</th>
                 <th>Camper Name</th>
-                <th id="recent">Recent Points</th>
-                <th id="alltime">All-time Points</th>
+                <th id="recent" className={(this.props.active === "recent") ? "active" : ""} onClick={this.handleClick}>Recent Points</th>
+                <th id="alltime" className={(this.props.active === "alltime") ? "active" : ""} onClick={this.handleClick}>All-time Points</th>
             </tr>
         );
     }
@@ -26,7 +35,7 @@ class CamperRow extends React.Component {
         return (
             <tr>
                 <td>{this.props.rank}</td>
-                <td><img src={this.props.img}/><a href={camperLink}>{this.props.username}</a></td>
+                <td><img className="camperImg" src={this.props.img}/><a href={camperLink}>{this.props.username}</a></td>
                 <td>{this.props.recent}</td>
                 <td>{this.props.alltime}</td>
             </tr>
@@ -45,15 +54,11 @@ class Leaderboard extends React.Component {
 
     getData(e) { //'recent' or 'alltime'
         const urlBase = "https://fcctop100.herokuapp.com/api/fccusers/top/";
-        var fullURL = urlBase;
-        if (e) {
-            fullURL += e.target.id;
-        } else {
-            fullURL += "recent";
-        }
+        var activeSort = e ? e.target.id : "recent";    
+        var fullURL = urlBase + activeSort;
 
         $.getJSON(fullURL, (data) => {
-            this.setState({data: data});
+            this.setState({data: data, active: activeSort});
             console.log(data);
         });
     }
@@ -68,7 +73,7 @@ class Leaderboard extends React.Component {
                 <table>
                     <thead>
                         <LeaderboardTitle/>
-                        <LeaderboardHeader/>
+                        <LeaderboardHeader active={this.state.active} onClick={this.getData}/>
                     </thead>
                     <tbody>{rows}</tbody>
                 </table>
