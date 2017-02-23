@@ -3,7 +3,7 @@ var React = require('react'),
 
 class LeaderboardTitle extends React.Component {
     render() {
-        return <tr><th colSpan="4">Leaderboard</th></tr>;
+        return <tr className="header1"><th colSpan="4">Leaderboard</th></tr>;
     }
 }
 
@@ -19,7 +19,7 @@ class LeaderboardHeader extends React.Component {
 
     render() {
         return (
-            <tr>
+            <tr className="header2">
                 <th>Rank</th>
                 <th>Camper Name</th>
                 <th id="recent" className={(this.props.active === "recent") ? "active" : ""} onClick={this.handleClick}>Recent Points</th>
