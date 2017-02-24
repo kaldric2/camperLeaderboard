@@ -1,0 +1,29 @@
+// Variables
+// Nesting
+// Partials
+// Import
+// Mixins
+// Inheritance
+// Operators
+
+/* Color variables */
+$mostlyWhite: rgb(239, 242, 251);
+$mostlyBlack: rgb(2, 0, 43);
+$darkBlue: rgb(7, 15, 110);
+$midBlue: rgb(26, 20, 212);
+$lighterBlue: rgb(150, 200, 251);
+$blueGrey: rgb(220, 230, 255);
+$pink: rgb(7, 150, 33);
+
+/* Color assignments */
+$bgColor: $mostlyBlack;
+$header1Color: $midBlue;
+$header2Color: $lighterBlue;
+$oddRowColor: $mostlyWhite;
+$evenRowColor: $blueGrey;
+
+/* Font variables */
+$defaultFont: -apple-system, BlinkMacSystemFont, 
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", 
+    "Fira Sans", "Droid Sans", "Helvetica Neue", 
+    sans-serif;
