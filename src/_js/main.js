@@ -3,7 +3,7 @@ var React = require('react'),
 
 class LeaderboardTitle extends React.Component {
     render() {
-        return <tr className="header1"><th colSpan="4">Leaderboard</th></tr>;
+        return <tr className="header1"><th colSpan="4"><a id="fccLink" target="_blank" href="http://freecodecamp.com">FreeCodeCamp</a>Camper Leaderboard</th></tr>;
     }
 }
 
