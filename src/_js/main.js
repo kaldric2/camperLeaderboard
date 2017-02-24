@@ -35,7 +35,7 @@ class CamperRow extends React.Component {
         return (
             <tr>
                 <td>{this.props.rank}</td>
-                <td><img className="camperImg" src={this.props.img}/><a href={camperLink}>{this.props.username}</a></td>
+                <td><img className="camperImg" src={this.props.img}/><a href={camperLink} target="_blank">{this.props.username}</a></td>
                 <td>{this.props.recent}</td>
                 <td>{this.props.alltime}</td>
             </tr>
@@ -65,9 +65,11 @@ class Leaderboard extends React.Component {
 
     render() {
         var rows = [];
+
         this.state.data.forEach((element, idx) => {
             rows.push(<CamperRow key={idx} rank={idx+1} img={element.img} username={element.username} recent={element.recent} alltime={element.alltime} />);
-        })
+        });
+
         return (
             <div>
                 <table>
@@ -76,6 +78,7 @@ class Leaderboard extends React.Component {
                         <LeaderboardHeader active={this.state.active} onClick={this.getData}/>
                     </thead>
                     <tbody>{rows}</tbody>
+                    <tfoot><tr colSpan="4" /></tfoot>
                 </table>
             </div>
         );   
