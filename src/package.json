@@ -9,6 +9,7 @@
   "author": "Kevin Aldrich",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^6.7.5",
     "babel-core": "^6.23.1",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
@@ -21,6 +22,7 @@
     "gulp-imagemin": "^3.1.1",
     "gulp-jshint": "^2.0.4",
     "gulp-minify-css": "^1.2.4",
+    "gulp-postcss": "^6.3.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^2.0.1",

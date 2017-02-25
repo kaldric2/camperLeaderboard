@@ -1,3 +1,5 @@
+'esversion: 6'
+
 var React = require('react'),
     ReactDOM = require('react-dom');
 
@@ -22,8 +24,8 @@ class LeaderboardHeader extends React.Component {
             <tr className="header2">
                 <th>Rank</th>
                 <th>Camper Name</th>
-                <th id="recent" className={(this.props.active === "recent") ? "active" : ""} onClick={this.handleClick}>Recent Points</th>
-                <th id="alltime" className={(this.props.active === "alltime") ? "active" : ""} onClick={this.handleClick}>All-time Points</th>
+                <th id="recent" className={(this.props.active === "recent") ? (this.props.reversed) ? "reversed" : "active" : ""} onClick={this.handleClick}>Recent Points</th>
+                <th id="alltime" className={(this.props.active === "alltime") ? (this.props.reversed) ? "reversed" : "active" : ""} onClick={this.handleClick}>All-time Points</th>
             </tr>
         );
     }
@@ -57,10 +59,14 @@ class Leaderboard extends React.Component {
         var activeSort = e ? e.target.id : "recent";    
         var fullURL = urlBase + activeSort;
 
-        $.getJSON(fullURL, (data) => {
-            this.setState({data: data, active: activeSort});
-            console.log(data);
-        });
+        if (this.state.active !== undefined && this.state.active === activeSort) {
+            this.setState({data: this.state.data.reverse(), active: activeSort, reversed: !this.state.reversed});
+        } else {
+            $.getJSON(fullURL, (data) => {
+                this.setState({data: data, active: activeSort, reversed: false});
+            });
+        }
+        console.log(this.state.data);
     }
 
     render() {
@@ -75,7 +81,7 @@ class Leaderboard extends React.Component {
                 <table>
                     <thead>
                         <LeaderboardTitle/>
-                        <LeaderboardHeader active={this.state.active} onClick={this.getData}/>
+                        <LeaderboardHeader active={this.state.active} onClick={this.getData} reversed={this.state.reversed} />
                     </thead>
                     <tbody>{rows}</tbody>
                     <tfoot><tr colSpan="4" /></tfoot>

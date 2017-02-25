@@ -14,7 +14,9 @@ const gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
-    jsxhint = require('jsxhint')
+    jsxhint = require('jsxhint'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer')
 ;
 
 var server;
@@ -32,6 +34,7 @@ gulp.task('sass', ()=>{
     return gulp.src('_css/**/*.scss')
         .pipe(environment === 'development' ? sourcemaps.init() : gutil.noop())
         .pipe(sass()).on('error', handleError)
+        .pipe(postcss([ autoprefixer() ]))
         .pipe(environment === 'development' ? sourcemaps.write() : gutil.noop())
         .pipe(environment === 'production' ? minifyCSS() : gutil.noop())
         .pipe(gulp.dest('../dist/_css'))

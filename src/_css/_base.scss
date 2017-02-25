@@ -94,6 +94,11 @@ a:hover {
     font-size: 0.75em;
 }
 
+.reversed::after {
+    @extend .active::after;
+    content: "\25B2";
+}
+
 .header1 {
     background-color: $header1Color;
     color: $blueGrey;
