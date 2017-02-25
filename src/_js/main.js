@@ -86,7 +86,6 @@ class Leaderboard extends React.Component {
         } else {
             this.getData(activeSort);
         }
-        console.log(this.state.data);
     }
 
     getData(activeSort) { //'recent' or 'alltime'

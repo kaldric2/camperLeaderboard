@@ -115,3 +115,31 @@ a:hover {
         }
     }
 }
+
+@include media("<small") {
+    html, body {
+        font-size: 0.85em;
+    }
+
+    table {
+        width: 400px;
+    }
+
+    .active::after {
+        font-size: 0.65em;
+    }
+}
+
+@include media("<tiny") {
+    html, body {
+        font-size: 0.75em;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    .active::after {
+        font-size: 0.5em;
+    }
+}
